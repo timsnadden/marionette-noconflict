@@ -1,4 +1,5 @@
 requirejs.config({
+	waitSeconds: 0,
 	map: {
 		'*': {
 			'jquery': 'private/jquery',
@@ -25,6 +26,12 @@ define(function(require) {
 	var _ = require('underscore');
 	var Backbone = require('backbone');
 	var Marionette = require('marionette');
+
+	// see https://github.com/marionettejs/marionette.inspector/blob/master/README.md#caveats
+	if (window.__agent) {
+		window.__agent.start(Backbone, Marionette);
+	}
+
 	var RootView = require('root');
 
 	var app = new Marionette.Application();
